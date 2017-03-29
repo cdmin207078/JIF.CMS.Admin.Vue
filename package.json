@@ -1,0 +1,34 @@
+{
+  "name": "JIF.CMS.Admin.Vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdmin207078/JIF.CMS.Admin.Vue.git"
+  },
+  "keywords": [],
+  "author": "cdmin207078",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cdmin207078/JIF.CMS.Admin.Vue/issues"
+  },
+  "homepage": "https://github.com/cdmin207078/JIF.CMS.Admin.Vue#readme",
+  "devDependencies": {
+    "cross-env": "^3.2.4",
+    "css-loader": "^0.27.3",
+    "file-loader": "^0.10.1",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.28.0",
+    "style-loader": "^0.16.1",
+    "url-loader": "^0.5.8",
+    "vue": "^2.2.6",
+    "vue-loader": "^11.3.4",
+    "vue-template-compiler": "^2.2.6",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
