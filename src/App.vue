@@ -1,23 +1,30 @@
 <template>
   <div id="app">
-    <h1>长者: {{ age }}</h1>
-    <button @click="mo">续命</button>
+    <iNav></iNav>
+    <iContent></iContent>
   </div>
 </template>
 
 <script>
+  import iNav from './views/layout/Nav'
+  import iContent from './views/layout/Content'
 
-export default {
-  data() {
-    return {
-      age: 1
-    }
-  },
-  methods: {
-    mo: function() {
-      this.age++
-      console.log('呵呵大')
+  export default {
+    components: {
+      iNav,
+      iContent
+    },
+    data() {
+
+    },
+    methods: {
     }
   }
-}
+
 </script>
+
+<style scope>
+  body {
+    background-color: #F6F6F3;
+  }
+</style>

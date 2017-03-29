@@ -12,7 +12,10 @@ module.exports = {
     filename: 'index.js'
   },
   resolve: {
-    extensions: ['.js','.vue']
+    extensions: ['.js','.vue'],
+    alias: {
+      vue: 'vue/dist/vue.js'
+    }
   },
   module: {
     rules: [
@@ -20,18 +23,17 @@ module.exports = {
         test: /\.css$/,
         use: [
           { loader: 'style-loader' },
-          { 
-            loader: 'css-loader', 
-            options: { 
-              modules: true 
-            }
-          }
+          { loader: 'css-loader' }
         ]
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
+      {
+        test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, 
+        loader: 'url-loader'
+      }
       // {
       //   test: /\.js$/,
       //   loader: 'babel-loader'
