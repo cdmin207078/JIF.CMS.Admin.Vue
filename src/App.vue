@@ -1,13 +1,14 @@
 <template>
   <div id="app">
     <iNav></iNav>
-    <iContent></iContent>
+    <router-view></router-view>
+    <!--<iContent></iContent>-->
   </div>
 </template>
 
 <script>
   import iNav from './views/layout/Nav'
-  import iContent from './views/layout/Content'
+  import iContent from './views/layout/content'
 
   export default {
     components: {
@@ -15,7 +16,9 @@
       iContent
     },
     data() {
+      return {
 
+      }
     },
     methods: {
     }

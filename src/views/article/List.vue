@@ -11,6 +11,17 @@
         </div>
 
         <div>
+          <table>
+
+            <tr v-for="s in source">
+              <td>{{ s.id }}</td>
+              <td>{{ s.title }}</td>
+              <td>{{ s.author }}</td>
+              <td>{{ s.createtime }}</td>
+            </tr>
+          </table>
+          <br />
+
           <Table :border="true" :size="'small'" :columns="cols" :data="source"></Table>
         </div>
       </i-col>
@@ -32,7 +43,7 @@
       }
     },
     mounted() {
-      for (var i = 0; i < 20; i++) {
+      for (var i = 0; i < 200; i++) {
         this.source.push({ id: 1, title: 'VueJs - 初见', author: 'admin', category: '	程序开发', createtime: '昨天 10:27' })
         this.source.push({ id: 1, title: 'phpstudy 访问速度慢解决办法', author: 'admin', category: '	程序开发', createtime: '4天前' })
         this.source.push({ id: 1, title: 'autofac 循环依赖处理', author: 'admin', category: '	程序开发', createtime: '6天前' })
