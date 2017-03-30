@@ -23,11 +23,5 @@
 </script>
 
 <style>
-  .layout-content {
-    min-height: 200px;
-    margin: 15px;
-    overflow: hidden;
-    background: #fff;
-    border-radius: 4px;
-  }
+
 </style>

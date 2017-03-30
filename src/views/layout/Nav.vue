@@ -5,7 +5,7 @@
 
         <Submenu name="1">
           <template slot="title">
-            <!--<Icon type="ios-people"></Icon>-->
+            <Icon type="pie-graph"></Icon>
             控制台
           </template>
           <Menu-item name="/dashboard">概要</Menu-item>
@@ -16,7 +16,7 @@
 
         <Submenu name="2">
           <template slot="title">
-            <Icon type="ios-people"></Icon>
+            <Icon type="edit"></Icon>
             撰写
           </template>
           <Menu-item name="2-1">撰写文章</Menu-item>
@@ -25,6 +25,7 @@
 
         <Submenu name="3">
           <template slot="title">
+            <Icon type="paper-airplane"></Icon>          
             管理
           </template>
           <Menu-item name="/article">文章</Menu-item>
@@ -38,7 +39,7 @@
 
         <Submenu name="4">
           <template slot="title">
-            <Icon type="settings"></Icon>
+            <Icon type="gear-a"></Icon>
             设置
           </template>
           <Menu-item name="4-1">基本</Menu-item>
@@ -56,9 +57,6 @@
     methods: {
       go(key) {
         this.$router.push(key);
-        console.info(key)
-
-        console.info(this.$route);
       }
     }
   }
