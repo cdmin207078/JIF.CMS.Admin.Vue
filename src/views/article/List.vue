@@ -5,13 +5,18 @@
         <Button type="primary">新增</Button>
       </i-col>
       <i-col :sm="{ span: 12 }" style="text-align: right;">
-        <Input icon="search" style="width: 200px"></Input>
+        <Input style="width: 200px" placeholder="标题"></Input>
         <Button type="info">搜索</Button>
       </i-col>
     </Row>
     <Row>
       <Table :border="true" :size="'small'" :columns="cols" :data="source" @on-row-click="onRowClick" @on-select="onSelect"></Table>
     </Row>
+
+    <Row>
+
+    </Row>
+
     <Row>
       <Page :total="100" show-sizer></Page>
     </Row>
@@ -23,32 +28,34 @@
     data() {
       return {
         cols: [
-          { type: 'selection', width: '50px', align: 'center' },
-          { title: '标题', key: 'title' },
-          { title: '作者', key: 'author' },
-          { title: '分类', key: 'category' },
-          { title: '日期', key: 'createtime' }
+          { type: 'selection', width: '52px', align: 'center' },
+          { title: '标题', key: 'Title' },
+          { title: '作者', key: 'Author' },
+          { title: '分类', key: 'Category' },
+          { title: '日期', key: 'CreateTime' }
         ],
-        source: []
+        source: [],
+        api_articles_url: 'http://localhost:60007/article/index'
       }
     },
     mounted() {
-      for (var i = 0; i < 4; i++) {
-        this.source.push({ id: 1, title: 'VueJs - 初见', author: 'admin', category: '	程序开发', createtime: '昨天 10:27' })
-        this.source.push({ id: 1, title: 'phpstudy 访问速度慢解决办法', author: 'admin', category: '	程序开发', createtime: '4天前' })
-        this.source.push({ id: 1, title: 'autofac 循环依赖处理', author: 'admin', category: '	程序开发', createtime: '6天前' })
-        this.source.push({ id: 1, title: 'C# Enum - String - int 互相转换', author: 'admin', category: '	程序开发', createtime: '6天前' })
-        this.source.push({ id: 1, title: 'typecho 安装访问端口设置', author: 'admin', category: '	程序开发', createtime: '3月22日' })
-      }
+
+      this.$http.get(this.api_articles_url).then(response => {
+        this.$Message.success('获取成功')
+        this.source = response.data
+      }, response => {
+        this.$Message.error('获取失败, 返回: ' + response)
+      })
+
     },
     methods: {
       onRowClick(data) {
-        // console.info(data.title)
+
       },
       onSelect(selection, row) {
         this.$Notice.open({
-          title: row.id,
-          desc: row.title,
+          title: row.Id,
+          desc: row.Title,
         })
       }
     }
