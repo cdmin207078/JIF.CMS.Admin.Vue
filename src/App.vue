@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <iNav></iNav>
-    <row type="flex" justify="center">
+    <Row type="flex" justify="center">
       <i-col :xs="22" :sm="20" :lg="16">
         <div class="layout">
           <Row>
@@ -17,7 +17,7 @@
           </Row>
         </div>
       </i-col>
-    </row>
+    </Row>
     <!--<iContent></iContent>-->
   </div>
 </template>
@@ -33,7 +33,6 @@
     },
     data() {
       return {
-
       }
     },
     methods: {
@@ -52,6 +51,7 @@
     padding: 10px 15px;
     background: #fff;
     border-radius: 4px;
+    border: 1px #ddd solid;
   }
   
   .ivu-row {

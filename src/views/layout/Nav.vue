@@ -19,7 +19,7 @@
             <Icon type="edit"></Icon>
             撰写
           </template>
-          <Menu-item name="2-1">撰写文章</Menu-item>
+          <Menu-item name="/article/add">撰写文章</Menu-item>
           <Menu-item name="2-2">创建页面</Menu-item>
         </Submenu>
 

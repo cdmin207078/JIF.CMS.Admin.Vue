@@ -2,11 +2,11 @@
   <div>
     <Row>
       <i-col :sm="{ span: 12 }">
-        <Button type="primary">新增</Button>
+        <Button type="primary" href="/article/add">新增</Button>
       </i-col>
       <i-col :sm="{ span: 12 }" style="text-align: right;">
-        <Input style="width: 200px" placeholder="标题"></Input>
-        <Button type="info">搜索</Button>
+        <Input style="width: 200px" placeholder="标题" v-model="q"></Input>
+        <Button type="info" @click="loadArticles">搜索</Button>
       </i-col>
     </Row>
     <Row>
@@ -14,11 +14,7 @@
     </Row>
 
     <Row>
-
-    </Row>
-
-    <Row>
-      <Page :total="100" show-sizer></Page>
+      <Page :total="source_totalitem" :current="source_pageindex" @on-change="onPageIndexChange" @on-page-size-change="onPageSizeChange" show-total show-sizer></Page>
     </Row>
   </div>
 </template>
@@ -35,28 +31,54 @@
           { title: '日期', key: 'CreateTime' }
         ],
         source: [],
+        q:'',
+        source_totalitem: 1,
+        source_totalpage: 1,
+        source_pageindex: 1,
+        source_pagesize: 10,
         api_articles_url: 'http://localhost:60007/article/index'
       }
     },
     mounted() {
-
-      this.$http.get(this.api_articles_url).then(response => {
-        this.$Message.success('获取成功')
-        this.source = response.data
-      }, response => {
-        this.$Message.error('获取失败, 返回: ' + response)
-      })
-
+      
+      this.loadArticles()
     },
     methods: {
+      loadArticles() {
+        this.$http.get(this.api_articles_url, {
+          params: {
+            pageindex: this.source_pageindex,
+            pagesize: this.source_pagesize,
+            q: this.q
+          }
+        })
+        .then(response => {
+          this.$Message.success('获取成功')
+          this.source_pageindex = response.data.PageIndex
+          this.source_totalitem = response.data.TotalCount
+          this.source_totalpage = response.data.TotalPages
+          this.source = response.data.Items
+        }, response => {
+          this.$Message.error('获取失败, 返回: ' + response)
+        })
+      },
       onRowClick(data) {
 
       },
+      
       onSelect(selection, row) {
         this.$Notice.open({
           title: row.Id,
           desc: row.Title,
         })
+      },
+      onPageIndexChange(pageindex) {
+        this.source_pageindex = pageindex
+        this.loadArticles()
+      },
+      onPageSizeChange(pagesize) {
+        this.source_pagesize = pagesize
+        this.loadArticles()
       }
     }
   }
