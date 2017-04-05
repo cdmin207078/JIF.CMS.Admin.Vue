@@ -17,12 +17,6 @@ export default [
   {
     path: '/article',
     component: article
-    // children: [
-    //   {
-    //     path: 'edit',
-    //     component: articleedit
-    //   }
-    // ]
   },
   {
     path: '/article/add',

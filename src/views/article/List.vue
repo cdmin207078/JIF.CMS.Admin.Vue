@@ -3,6 +3,8 @@
     <Row>
       <i-col :sm="{ span: 12 }">
         <Button type="primary" @click="gonew">新增</Button>
+        <Button type="warn" @click="login">登陆</Button>
+        
       </i-col>
       <i-col :sm="{ span: 12 }" style="text-align: right;">
         <Input style="width: 200px" placeholder="标题" v-model="q"></Input>
@@ -48,13 +50,24 @@ export default {
       source_totalpage: 1,
       source_pageindex: 1,
       source_pagesize: 10,
-      api_articles_url: 'http://localhost:60007/article/index',
+      api_articles_url: 'http://localhost:60007/article/GetArticles',
     }
   },
   mounted() {
     this.loadArticles()
   },
   methods: {
+    login(){
+      this.$http.post('http://localhost:60007/welcome/login',{
+        account: 'chenning',
+        password: '123456'
+      })
+      .then(response => {
+        this.$Message.success('登陆成功')
+      }, response => {
+        this.$Message.error('登陆失败')        
+      })
+    },
     gonew() {
       this.$router.push('/article/add')
     },
@@ -76,11 +89,12 @@ export default {
       })
       .then(response => {
         this.$Message.success('获取成功')
-        this.source_pageindex = response.data.PageIndex
-        this.source_totalitem = response.data.TotalCount
-        this.source_totalpage = response.data.TotalPages
+        var data = response.data.data
+        this.source_pageindex = data.PageIndex
+        this.source_totalitem = data.TotalCount
+        this.source_totalpage = data.TotalPages
         // this.source_pagesize = response.data.PageSize
-        this.source = response.data.Items
+        this.source = data.Items
       }, response => {
         this.$Message.error('获取失败, 返回: ' + response)
       })

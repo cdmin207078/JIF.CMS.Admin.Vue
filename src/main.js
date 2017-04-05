@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 
 
 import axios from 'axios'
+axios.defaults.withCredentials = false
+
+
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'    // 使用 CSS
 
