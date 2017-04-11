@@ -3,7 +3,8 @@
     <Row>
       <i-col :sm="{ span: 12 }">
         <Button type="primary" @click="gonew">新增</Button>
-        <Button type="warn" @click="login">登陆</Button>
+        <Button type="warning" @click="login">登陆</Button>
+        <Button @click="setauth">设置授权</Button>
         
       </i-col>
       <i-col :sm="{ span: 12 }" style="text-align: right;">
@@ -11,6 +12,7 @@
         <Button type="info" @click="loadArticles">搜索</Button>
       </i-col>
     </Row>
+    
     <Row>
       <Table border :size="'small'" :context="self" :columns="cols" :data="source" @on-select="onSelect"></Table>
     </Row>
@@ -22,7 +24,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
 
 export default {
   data() {
@@ -35,7 +37,7 @@ export default {
         { title: '分类', key: 'Category', width: 100 },
         { title: '日期', key: 'CreateTime', width: 150,
           render(row, column, index) {
-            return moment(row.CreateTime).format('YYYY-MM-DD')
+            return '{{ this.$moment(\'' + row.CreateTime + '\').format("YYYY-MM-DD") }}'
           }
         },
         { title: '操作', key: 'action', width: 120, align: 'center', 
@@ -49,24 +51,36 @@ export default {
       source_totalitem: 1,
       source_totalpage: 1,
       source_pageindex: 1,
-      source_pagesize: 10,
-      api_articles_url: 'http://localhost:60007/article/GetArticles',
+      source_pagesize: 10
     }
   },
   mounted() {
     this.loadArticles()
   },
   methods: {
-    login(){
-      this.$http.post('http://localhost:60007/welcome/login',{
+    login() { 
+      this.$http.post('/welcome/login',{
         account: 'chenning',
         password: '123456'
       })
       .then(response => {
-        this.$Message.success('登陆成功')
+        let result  = response.data
+        if(result.success) {
+          this.$Message.success(response.data.message)
+        } else {
+          this.$Message.error(response.data.message)          
+        }
       }, response => {
         this.$Message.error('登陆失败')        
       })
+    },
+    setauth() {
+      let auth = {
+        token: '123456'
+      }
+
+      // this.$http.headers.common['Authorization'] = auth;
+      console.log(this.$http.defaults.auth)
     },
     gonew() {
       this.$router.push('/article/add')
@@ -80,7 +94,7 @@ export default {
       console.log(index)
     },
     loadArticles() {
-      this.$http.get(this.api_articles_url, {
+      this.$http.get('/article/GetArticles', {
         params: {
           pageindex: this.source_pageindex,
           pagesize: this.source_pagesize,

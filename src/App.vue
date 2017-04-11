@@ -6,9 +6,9 @@
         <div class="layout">
           <Row>
             <Breadcrumb>
-              <Breadcrumb-item href="/dashboard">Dashboard</Breadcrumb-item>
-              <Breadcrumb-item href="/article">文章</Breadcrumb-item>
-              <Breadcrumb-item>列表</Breadcrumb-item>
+              <Breadcrumb-item href="/dashboard">一级目录</Breadcrumb-item>
+              <Breadcrumb-item href="/article">二级目录</Breadcrumb-item>
+              <Breadcrumb-item>三级页面</Breadcrumb-item>
             </Breadcrumb>
           </Row>
 

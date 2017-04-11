@@ -61,10 +61,10 @@
         },
         categories: [],
         sele_categories: [2, 1],
-        api_categories_url: 'http://localhost:60007/article/GetCategories/',
-        api_get_article: 'http://localhost:60007/article/GetArticle/',
-        api_add_article: 'http://localhost:60007/article/AddArticle/',
-        api_update_article: 'http://localhost:60007/article/UpdateArticle/',
+        api_categories_url: '/article/GetCategories/',
+        api_get_article: '/article/GetArticle/',
+        api_add_article: '/article/AddArticle/',
+        api_update_article: '/article/UpdateArticle/',
         
         configs: {
           status: false, // 禁用底部状态栏
