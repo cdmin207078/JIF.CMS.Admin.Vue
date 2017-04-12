@@ -13,7 +13,7 @@
             <Input v-model="article.title" placeholder="文章标题" size="large"></Input>
           </Form-item>
           <Form-item label="正文内容">
-            <markdown-editor :value="article.markdownContent" :configs="configs"></markdown-editor>
+            <markdown-editor v-model="article.markdownContent" ref="markdownEditor" :configs="configs"></markdown-editor>
           </Form-item>
 
         </Form>
@@ -60,7 +60,6 @@
           categoryid: 0,
         },
         categories: [],
-        sele_categories: [2, 1],
         api_categories_url: '/article/GetCategories/',
         api_get_article: '/article/GetArticle/',
         api_add_article: '/article/AddArticle/',
@@ -111,6 +110,7 @@
         
       },
       save() {
+        // this.$Message.info(this.article.markdownContent)
         this.$http.post(this.api_update_article, {
             Title: this.article.title,
             MarkdownContent: this.article.markdownContent,
@@ -121,9 +121,12 @@
             id: this.article.id
           }
         }).then(response => {
-          this.$Message.error('保存成功')
-        }, response => {
-          this.$Message.error('文章修改失败, ' + response)
+          var result = resposne.data;
+          if(result.success) {
+            this.$Message.success('保存成功')
+          } else {
+            this.$Message.success('保存失败: ' + result.message)
+          }
         })
       },
     }

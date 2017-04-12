@@ -60,8 +60,8 @@ export default {
   methods: {
     login() { 
       this.$http.post('/welcome/login',{
-        account: 'chenning',
-        password: '123456'
+        account: 'cdmin207078',
+        password: '111111'
       })
       .then(response => {
         let result  = response.data

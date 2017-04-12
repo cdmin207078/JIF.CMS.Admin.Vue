@@ -5,8 +5,9 @@ import VueRouter from 'vue-router'
 
 import axios from 'axios'
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://192.168.1.76:60007'
-axios.defaults.headers.common['Authorization'] = '123456';
+axios.defaults.baseURL = 'http://localhost:60007'
+// axios.defaults.headers.common['Authorization'] = '123456';
+
 
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'    // 使用 CSS
