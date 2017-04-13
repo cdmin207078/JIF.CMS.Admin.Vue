@@ -113,6 +113,7 @@
         // this.$Message.info(this.article.markdownContent)
         this.$http.post(this.api_update_article, {
             Title: this.article.title,
+            CategoryId: this.article.categoryid,
             MarkdownContent: this.article.markdownContent,
             AllowComments: this.article.allowComments,
             Published: this.article.published
@@ -121,12 +122,14 @@
             id: this.article.id
           }
         }).then(response => {
-          var result = resposne.data;
+          var result = response.data;
           if(result.success) {
             this.$Message.success('保存成功')
           } else {
             this.$Message.success('保存失败: ' + result.message)
           }
+        }, response => {
+            this.$Message.success('通讯失败, 保存失败: ' + result.message)          
         })
       },
     }

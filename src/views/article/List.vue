@@ -4,7 +4,6 @@
       <i-col :sm="{ span: 12 }">
         <Button type="primary" @click="gonew">新增</Button>
         <Button type="warning" @click="login">登陆</Button>
-        <Button @click="setauth">设置授权</Button>
         
       </i-col>
       <i-col :sm="{ span: 12 }" style="text-align: right;">
@@ -71,16 +70,8 @@ export default {
           this.$Message.error(response.data.message)          
         }
       }, response => {
-        this.$Message.error('登陆失败')        
+        this.$Message.error('登陆失败')
       })
-    },
-    setauth() {
-      let auth = {
-        token: '123456'
-      }
-
-      // this.$http.headers.common['Authorization'] = auth;
-      console.log(this.$http.defaults.auth)
     },
     gonew() {
       this.$router.push('/article/add')
@@ -102,7 +93,6 @@ export default {
         }
       })
       .then(response => {
-        this.$Message.success('获取成功')
         var data = response.data.data
         this.source_pageindex = data.PageIndex
         this.source_totalitem = data.TotalCount
@@ -126,8 +116,7 @@ export default {
     onPageSizeChange(pagesize) {
       this.source_pagesize = pagesize
       this.loadArticles()
-    },
-
+    }
   }
 }
 
