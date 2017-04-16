@@ -100,6 +100,7 @@ export default {
         // this.source_pagesize = response.data.PageSize
         this.source = data.Items
       }, response => {
+        this.source = []
         this.$Message.error('获取失败, 返回: ' + response)
       })
     },

@@ -124,7 +124,9 @@
         }).then(response => {
           var result = response.data;
           if(result.success) {
-            this.$Message.success('保存成功')
+            this.$Message.success('保存成功',0.5,function() {
+              alert('保存成功,回调')
+            })
           } else {
             this.$Message.success('保存失败: ' + result.message)
           }
